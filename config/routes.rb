@@ -1,19 +1,17 @@
 CourseProject::Application.routes.draw do
   
-  ActiveAdmin.routes(self)
+	ActiveAdmin.routes(self)
 
-  root to: "main#index"
-  
-  devise_for :admin_users, ActiveAdmin::Devise.config
+	devise_for :admin_users, ActiveAdmin::Devise.config
 
-  devise_for :users, :path => 'accounts', controllers: { confirmations: 'confirmations' }
+	devise_for :users, :path => 'accounts', controllers: { confirmations: 'confirmations' }
 
-  devise_scope :users do
-  	get '/confirmation-getting-started' => 'main#index'
-  end
+   	devise_scope :user do
+  		get '/confirmation-getting-started' => 'userdetails#new', as: 'confirmation_getting_started'
+	end
   
-  
-  resources :userdetails, only: [:create, :new, :show, :edit, :update]
-  resources :clubs, only: [:create, :new, :show, :edit, :update]
+	root to: "main#index"
+	resources :userdetails, only: [:create, :new, :show, :edit, :update]
+	resources :clubs, only: [:create, :new, :show, :edit, :update]
   
 end
