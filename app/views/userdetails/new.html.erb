@@ -1,0 +1,48 @@
+welcome... <%= current_user.email %><br/><br/>
+
+<div class="alert alert-info">	
+	Update your information...Don't worry it's safe with us.
+</div>	
+
+ <%= form_for @userdetail, :html => {:multipart => true} do |f| %>
+	<% if @userdetail.errors.any? %>
+		<div class="alert alert-error">
+			<%= @userdetail.errors.full_messages.join("<br/>").html_safe %>
+		</div>
+	<% end %>
+
+	<div class="row-fluid">	
+		
+		<%= f.label :firstname, "FIRST NAME:" %>
+		<%= f.text_field :firstname, class: "span3", placeholder: "First Name" %><br/>
+		
+		<%= f.label :lastname, "LAST NAME:" %>
+		<%= f.text_field :lastname, class: "span3", placeholder: "Last Name" %><br/>
+		
+		<%= f.label :gender, "GENDER:" %>
+		<%= select(:userdetail, :gender, %w[Male Female], {:prompt => "Select gender"}, :class => "span3") %>
+		
+		<%= f.label :image, "PROFILE IMAGE:" %>
+		<%= f.file_field :image %><br/>
+
+		
+		<br/><div class="muted">OPTIONAL FILEDS:</div>
+
+		<%= f.label :city, "CITY:" %>
+		<%= f.text_field :city, class: "span3", placeholder: "Current Location / City" %><br/>
+		
+		<%= f.label :country, "COUNTRY:" %>
+		<%= country_select(:userdetail, :country, "select country") %><br/>
+
+		<%= f.label :zipcode, "ZIP CODE:" %>
+		<%= f.text_field :zipcode, class: "span3", placeholder: "zip_code" %><br/>
+		
+		<%= f.label :birthyear, "YEAR OF BIRTH (e.g. 1980):" %>
+		<%= f.text_field :birthyear, class: "span3", placeholder: "e.g. 1980" %><br/>
+	
+		<%= f.submit "Create your profile!", class: "btn btn-large btn-primary" %>
+	</div>	
+<% end %>
+
+
+  		

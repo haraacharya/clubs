@@ -1,0 +1,33 @@
+
+<ul class="thumbnails row-fluid">
+	<% @clubs.each do |club| %>
+		<li class="span2">
+			<div class="thumbnail">
+				<%= image_tag(club.image, :class => "image-polaroid") %>
+				<h3 class="text-center"><%= club.name[0,10] %></h3>
+				<% if false %>
+				<span class="label label-info">URL:</span> <%= url_helper(club) %><br/>
+				<span class="label label-info">Capacity:</span> <%= club.capacity %><br/>
+				<span class="label label-info">Location:</span> <%= club.location %><br/>
+				<span class="label label-info">Timing:</span> <%= club.timing %><br/>
+				<span class="label label-info">Phone:</span> <%= club.phone %><br/>
+				<span class="label label-info">Email:</span> <%= club.email %><br/>
+				<% end %>
+				<%= truncate(club.about, :length => 100) %><br/>
+				<div class="text-right"><%= link_to "more...", club_path(club)%></div>
+				
+				<% if current_user %>
+					<div class="text-center">Are you coming today? </div>
+					<button class="text-center btn btn-block btn-success" type="button">JOIN & RSVP</button>
+
+				<% else %>
+					<%= link_to "Log in", new_user_session_path %>  to connect to people who are coming today...
+				<% end %>	
+				
+			</div>
+
+		</li>
+	<% end %>
+	
+</ul>
+
