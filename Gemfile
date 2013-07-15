@@ -13,6 +13,8 @@ group :production do
 end
 
 gem 'activeadmin'
+gem 'active_admin_editor'
+gem 'truncate_html'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'countries'

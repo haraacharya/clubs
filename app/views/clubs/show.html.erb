@@ -1,9 +1,9 @@
 <%= @club.name %><br/>
-<%= @club.url %><br/>
+<%= url_helper(@club)  %><br/>
 <%= @club.capacity %><br/>
 <%= @club.location %><br/>
 <%= @club.timing %><br/>
 <%= @club.phone %><br/>
 <%= @club.email %><br/>
-<%= @club.about %>
+<%= @club.about.html_safe %>
 <%= "-----" %> <br/>
